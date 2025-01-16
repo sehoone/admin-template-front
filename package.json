@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "jsonserve": "node src/jsonserver/server.cjs"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,vue}": [
@@ -31,6 +32,7 @@
     "epic-spinners": "^2.0.0",
     "flag-icons": "^6.15.0",
     "ionicons": "^4.6.3",
+
     "medium-editor": "^5.23.3",
     "pinia": "^2.1.7",
     "register-service-worker": "^1.7.1",
@@ -73,6 +75,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.4.9",
     "vue-eslint-parser": "^9.3.2",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.1.6",
+    "json-server": "^0.17.4"
   }
 }
