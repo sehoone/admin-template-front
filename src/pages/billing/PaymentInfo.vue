@@ -58,10 +58,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import { usePaymentCardsStore } from '../../stores/payment-cards'
+import { computed, ref } from 'vue';
+import { usePaymentCardsStore } from '../../stores/payment-cards';
 
-import ChangeYourPaymentPlan from './modals/ChangeYourPaymentPlan.vue'
+import ChangeYourPaymentPlan from './modals/ChangeYourPaymentPlan.vue';
 
 const paymentPlan = ref({
   id: '1',
@@ -73,20 +73,20 @@ const paymentPlan = ref({
   priceMonth: '$6.99',
   priceYear: '$69.99',
   switchToYearlySave: '16%',
-  uploadLimit: '100MB',
-})
+  uploadLimit: '100MB'
+});
 
-const cardStore = usePaymentCardsStore()
+const cardStore = usePaymentCardsStore();
 
-const isChangeYourPaymentPlanModalOpen = ref(false)
+const isChangeYourPaymentPlanModalOpen = ref(false);
 
-const paymentCard = computed(() => cardStore.currentPaymentCard)
+const paymentCard = computed(() => cardStore.currentPaymentCard);
 const togglePaymentPlanModal = () => {
-  isChangeYourPaymentPlanModalOpen.value = !isChangeYourPaymentPlanModalOpen.value
-}
+  isChangeYourPaymentPlanModalOpen.value = !isChangeYourPaymentPlanModalOpen.value;
+};
 
 const updatePaymentPlan = () => {
-  paymentPlan.value.isYearly = !paymentPlan.value.isYearly
-  isChangeYourPaymentPlanModalOpen.value = false
-}
+  paymentPlan.value.isYearly = !paymentPlan.value.isYearly;
+  isChangeYourPaymentPlanModalOpen.value = false;
+};
 </script>

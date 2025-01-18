@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { type PropType, inject } from 'vue'
-import { type Project } from '../types'
-import ProjectStatusBadge from '../components/ProjectStatusBadge.vue'
+import { type PropType, inject } from 'vue';
+import { type Project } from '../types';
+import ProjectStatusBadge from '../components/ProjectStatusBadge.vue';
 
 defineProps({
   projects: {
     type: Array as PropType<Project[]>,
-    required: true,
+    required: true
   },
   loading: {
     type: Boolean,
-    required: true,
-  },
-})
+    required: true
+  }
+});
 
 defineEmits<{
-  (event: 'edit', project: Project): void
-  (event: 'delete', project: Project): void
-}>()
+  (event: 'edit', project: Project): void;
+  (event: 'delete', project: Project): void;
+}>();
 
-const { getUserById, getTeamOptions } = inject<any>('ProjectsPage')
+const { getUserById, getTeamOptions } = inject<any>('ProjectsPage');
 </script>
 
 <template>

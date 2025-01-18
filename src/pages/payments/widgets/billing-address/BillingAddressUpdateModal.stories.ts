@@ -1,12 +1,12 @@
-import BillingAddressUpdateModal from './BillingAddressUpdateModal.vue'
-import { BillingAddress } from '../../types'
+import BillingAddressUpdateModal from './BillingAddressUpdateModal.vue';
+import { BillingAddress } from '../../types';
 
 export default {
   components: { BillingAddressUpdateModal },
   title: 'BillingAddressUpdateModal',
   component: BillingAddressUpdateModal,
-  tags: ['autodocs'],
-}
+  tags: ['autodocs']
+};
 
 export const Default = () => ({
   components: { BillingAddressUpdateModal },
@@ -21,14 +21,14 @@ export const Default = () => ({
         city: '',
         state: '',
         postalCode: '',
-        country: '',
-      } satisfies BillingAddress,
-    }
+        country: ''
+      } satisfies BillingAddress
+    };
   },
   template: `
     <va-button @click="showModal = !showModal">
       Show modal
     </va-button>
     <BillingAddressUpdateModal :billingAddress="billingAddress" v-if="showModal" @close="showModal = false"/>
-  `,
-})
+  `
+});

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VaTimelineItem from '../../../../components/va-timeline-item.vue'
+import VaTimelineItem from '../../../../components/va-timeline-item.vue';
 </script>
 
 <template>

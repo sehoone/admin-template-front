@@ -19,29 +19,29 @@
   </VaModal>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useUserStore } from '../../../stores/user-store'
+import { ref } from 'vue';
+import { useUserStore } from '../../../stores/user-store';
 
-import { buttonStyles } from '../styles'
-import { useToast } from 'vuestic-ui'
+import { buttonStyles } from '../styles';
+import { useToast } from 'vuestic-ui';
 
-const store = useUserStore()
+const store = useUserStore();
 
-const { init } = useToast()
+const { init } = useToast();
 
-const emits = defineEmits(['cancel'])
+const emits = defineEmits(['cancel']);
 
-const Name = ref<string>(store.userName)
+const Name = ref<string>(store.userName);
 
 const submit = () => {
   if (!Name.value || Name.value === store.userName) {
-    return emits('cancel')
+    return emits('cancel');
   }
 
-  store.changeUserName(Name.value)
-  init({ message: "You've successfully changed your name", color: 'success' })
-  emits('cancel')
-}
+  store.changeUserName(Name.value);
+  init({ message: "You've successfully changed your name", color: 'success' });
+  emits('cancel');
+};
 </script>
 
 <style lang="scss">

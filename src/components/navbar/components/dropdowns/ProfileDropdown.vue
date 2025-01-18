@@ -34,31 +34,31 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useColors } from 'vuestic-ui'
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useColors } from 'vuestic-ui';
 
-const { colors, setHSLAColor } = useColors()
-const hoverColor = computed(() => setHSLAColor(colors.focus, { a: 0.1 }))
+const { colors, setHSLAColor } = useColors();
+const hoverColor = computed(() => setHSLAColor(colors.focus, { a: 0.1 }));
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 type ProfileListItem = {
-  name: string
-  to?: string
-  href?: string
-  icon: string
-}
+  name: string;
+  to?: string;
+  href?: string;
+  icon: string;
+};
 
 type ProfileOptions = {
-  name: string
-  separator: boolean
-  list: ProfileListItem[]
-}
+  name: string;
+  separator: boolean;
+  list: ProfileListItem[];
+};
 
 withDefaults(
   defineProps<{
-    options?: ProfileOptions[]
+    options?: ProfileOptions[];
   }>(),
   {
     options: () => [
@@ -69,24 +69,24 @@ withDefaults(
           {
             name: 'profile',
             to: 'preferences',
-            icon: 'mso-account_circle',
+            icon: 'mso-account_circle'
           },
           {
             name: 'settings',
             to: 'settings',
-            icon: 'mso-settings',
+            icon: 'mso-settings'
           },
           {
             name: 'billing',
             to: 'billing',
-            icon: 'mso-receipt_long',
+            icon: 'mso-receipt_long'
           },
           {
             name: 'projects',
             to: 'projects',
-            icon: 'mso-favorite',
-          },
-        ],
+            icon: 'mso-favorite'
+          }
+        ]
       },
       {
         name: 'explore',
@@ -95,14 +95,14 @@ withDefaults(
           {
             name: 'faq',
             to: 'faq',
-            icon: 'mso-quiz',
+            icon: 'mso-quiz'
           },
           {
             name: 'helpAndSupport',
             href: 'https://discord.gg/u7fQdqQt8c',
-            icon: 'mso-error',
-          },
-        ],
+            icon: 'mso-error'
+          }
+        ]
       },
       {
         name: '',
@@ -111,19 +111,19 @@ withDefaults(
           {
             name: 'logout',
             to: 'login',
-            icon: 'mso-logout',
-          },
-        ],
-      },
-    ],
-  },
-)
+            icon: 'mso-logout'
+          }
+        ]
+      }
+    ]
+  }
+);
 
-const isShown = ref(false)
+const isShown = ref(false);
 
 const resolveLinkAttribute = (item: ProfileListItem) => {
-  return item.to ? { to: { name: item.to } } : item.href ? { href: item.href, target: '_blank' } : {}
-}
+  return item.to ? { to: { name: item.to } } : item.href ? { href: item.href, target: '_blank' } : {};
+};
 </script>
 
 <style lang="scss">

@@ -29,13 +29,13 @@ export default {
   inject: ['contextConfig'],
   computed: {
     themeGradientId() {
-      return this.contextConfig.invertedColor ? 'CORPORATE' : 'ORIGINAL'
+      return this.contextConfig.invertedColor ? 'CORPORATE' : 'ORIGINAL';
     },
     textColor() {
-      return this.contextConfig.invertedColor ? '#6E85E8' : '#E4FF32'
-    },
-  },
-}
+      return this.contextConfig.invertedColor ? '#6E85E8' : '#E4FF32';
+    }
+  }
+};
 </script>
 
 <style lang="scss">

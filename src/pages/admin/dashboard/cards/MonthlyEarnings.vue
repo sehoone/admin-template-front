@@ -23,43 +23,43 @@
 </template>
 
 <script setup lang="ts">
-import { VaCard } from 'vuestic-ui'
-import VaChart from '../../../../components/va-charts/VaChart.vue'
-import { useChartData } from '../../../../data/charts/composables/useChartData'
-import { lineChartData } from '../../../../data/charts/lineChartData'
-import { ChartOptions } from 'chart.js'
+import { VaCard } from 'vuestic-ui';
+import VaChart from '../../../../components/va-charts/VaChart.vue';
+import { useChartData } from '../../../../data/charts/composables/useChartData';
+import { lineChartData } from '../../../../data/charts/lineChartData';
+import { ChartOptions } from 'chart.js';
 
-const chartData = useChartData(lineChartData)
+const chartData = useChartData(lineChartData);
 
 const options: ChartOptions<'line'> = {
   scales: {
     x: {
       display: false,
       grid: {
-        display: false, // Disable X-axis grid lines ("net")
-      },
+        display: false // Disable X-axis grid lines ("net")
+      }
     },
     y: {
       display: false,
       grid: {
-        display: false, // Disable Y-axis grid lines ("net")
+        display: false // Disable Y-axis grid lines ("net")
       },
       ticks: {
-        display: false, // Hide Y-axis values
-      },
-    },
+        display: false // Hide Y-axis values
+      }
+    }
   },
   interaction: {
     intersect: false,
-    mode: 'index',
+    mode: 'index'
   },
   plugins: {
     legend: {
-      display: false,
+      display: false
     },
     tooltip: {
-      enabled: true,
-    },
-  },
-}
+      enabled: true
+    }
+  }
+};
 </script>

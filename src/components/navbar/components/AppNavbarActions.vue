@@ -39,17 +39,17 @@
 </template>
 
 <script lang="ts" setup>
-import ProfileDropdown from './dropdowns/ProfileDropdown.vue'
-import NotificationDropdown from './dropdowns/NotificationDropdown.vue'
-import GithubButton from './GitHubButton.vue'
-import VaIconDiscord from '../../icons/VaIconDiscord.vue'
+import ProfileDropdown from './dropdowns/ProfileDropdown.vue';
+import NotificationDropdown from './dropdowns/NotificationDropdown.vue';
+import GithubButton from './GitHubButton.vue';
+import VaIconDiscord from '../../icons/VaIconDiscord.vue';
 
 defineProps({
-  isMobile: { type: Boolean, default: false },
-})
+  isMobile: { type: Boolean, default: false }
+});
 
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 </script>
 
 <style lang="scss">

@@ -1,11 +1,11 @@
-import PaymentCardEdit from './PaymentCardEdit.vue'
-import { PaymentSystemType, PaymentCard } from '../../types'
+import PaymentCardEdit from './PaymentCardEdit.vue';
+import { PaymentSystemType, PaymentCard } from '../../types';
 
 export default {
   title: 'PaymentCardEdit',
   component: PaymentCardEdit,
-  tags: ['autodocs'],
-}
+  tags: ['autodocs']
+};
 
 export const Default = () => ({
   components: { PaymentCardEdit },
@@ -18,9 +18,9 @@ export const Default = () => ({
         isPrimary: true,
         paymentSystem: PaymentSystemType.Visa,
         cardNumberMasked: '****1679',
-        expirationDate: '09/24',
-      } satisfies PaymentCard,
-    }
+        expirationDate: '09/24'
+      } satisfies PaymentCard
+    };
   },
   template: `
     <PaymentCardEdit
@@ -30,8 +30,8 @@ export const Default = () => ({
         @cancel="lastEvent = 'cancel'"
     />
     <br>
-    <p>Last event: <span data-testid>{{ lastEvent }}</span></p>`,
-})
+    <p>Last event: <span data-testid>{{ lastEvent }}</span></p>`
+});
 
 export const Empty = () => ({
   components: { PaymentCardEdit },
@@ -43,13 +43,13 @@ export const Empty = () => ({
         isPrimary: false,
         paymentSystem: PaymentSystemType.Visa,
         cardNumberMasked: '',
-        expirationDate: '',
-      } satisfies PaymentCard,
-    }
+        expirationDate: ''
+      } satisfies PaymentCard
+    };
   },
   template: `
     <PaymentCardEdit
         :paymentCard="paymentCard"
         submitText="Create Card"
-    />`,
-})
+    />`
+});

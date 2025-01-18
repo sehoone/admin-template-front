@@ -1,23 +1,23 @@
-import { defineAsyncComponent, markRaw } from 'vue'
+import { defineAsyncComponent, markRaw } from 'vue';
 
-const DEFAULT_FONT_FAMILY = "'Inter', sans-serif"
+const DEFAULT_FONT_FAMILY = "'Inter', sans-serif";
 
 export const defaultConfig = {
   scales: {
     x: {
       ticks: {
         font: {
-          family: DEFAULT_FONT_FAMILY,
-        },
-      },
+          family: DEFAULT_FONT_FAMILY
+        }
+      }
     },
     y: {
       ticks: {
         font: {
-          family: DEFAULT_FONT_FAMILY,
-        },
-      },
-    },
+          family: DEFAULT_FONT_FAMILY
+        }
+      }
+    }
   },
   plugins: {
     legend: {
@@ -26,35 +26,35 @@ export const defaultConfig = {
         font: {
           color: '#34495e',
           family: DEFAULT_FONT_FAMILY,
-          size: 14,
+          size: 14
         },
-        usePointStyle: true,
-      },
+        usePointStyle: true
+      }
     },
     tooltip: {
       bodyFont: {
         size: 14,
-        family: DEFAULT_FONT_FAMILY,
+        family: DEFAULT_FONT_FAMILY
       },
-      boxPadding: 4,
-    },
+      boxPadding: 4
+    }
   },
   datasets: {
     line: {
       fill: 'origin',
       tension: 0.3,
-      borderColor: 'transparent',
+      borderColor: 'transparent'
     },
     bubble: {
-      borderColor: 'transparent',
+      borderColor: 'transparent'
     },
     bar: {
-      borderColor: 'transparent',
-    },
+      borderColor: 'transparent'
+    }
   },
   maintainAspectRatio: false,
-  animation: true,
-}
+  animation: true
+};
 
 export const doughnutConfig = {
   cutout: '80%',
@@ -62,40 +62,40 @@ export const doughnutConfig = {
     x: {
       display: false,
       grid: {
-        display: false, // Disable X-axis grid lines ("net")
-      },
+        display: false // Disable X-axis grid lines ("net")
+      }
     },
     y: {
       display: false,
       grid: {
-        display: false, // Disable Y-axis grid lines ("net")
+        display: false // Disable Y-axis grid lines ("net")
       },
       ticks: {
-        display: false, // Hide Y-axis values
-      },
-    },
+        display: false // Hide Y-axis values
+      }
+    }
   },
   plugins: {
     legend: {
-      display: false,
-    },
+      display: false
+    }
   },
   datasets: {
     line: {
       fill: 'origin',
       tension: 0.3,
-      borderColor: 'transparent',
+      borderColor: 'transparent'
     },
     bubble: {
-      borderColor: 'transparent',
+      borderColor: 'transparent'
     },
     bar: {
-      borderColor: 'transparent',
-    },
+      borderColor: 'transparent'
+    }
   },
   maintainAspectRatio: false,
-  animation: true,
-}
+  animation: true
+};
 
 export const chartTypesMap = {
   pie: markRaw(defineAsyncComponent(() => import('./chart-types/PieChart.vue'))),
@@ -103,5 +103,5 @@ export const chartTypesMap = {
   bubble: markRaw(defineAsyncComponent(() => import('./chart-types/BubbleChart.vue'))),
   line: markRaw(defineAsyncComponent(() => import('./chart-types/LineChart.vue'))),
   bar: markRaw(defineAsyncComponent(() => import('./chart-types/BarChart.vue'))),
-  'horizontal-bar': markRaw(defineAsyncComponent(() => import('./chart-types/HorizontalBarChart.vue'))),
-}
+  'horizontal-bar': markRaw(defineAsyncComponent(() => import('./chart-types/HorizontalBarChart.vue')))
+};

@@ -1,10 +1,10 @@
-import PaymentSystem from './PaymentSystem.vue'
+import PaymentSystem from './PaymentSystem.vue';
 
 export default {
   title: 'PaymentSystem',
   component: PaymentSystem,
-  tags: ['autodocs'],
-}
+  tags: ['autodocs']
+};
 
 export const Default = () => ({
   components: { PaymentSystem },
@@ -12,5 +12,5 @@ export const Default = () => ({
     <PaymentSystem type="visa"/>
     <br>
     <PaymentSystem type="mastercard"/>
-  `,
-})
+  `
+});

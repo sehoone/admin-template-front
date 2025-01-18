@@ -40,7 +40,8 @@ server.post('/api/search-posts', (req, res) => {
 });
 
 const apis = {
-  ...require('./dummy/member.json')
+  ...require('./dummy/member.json'),
+  ...require('./dummy/template.json')
 };
 
 apiList.forEach((x) => {

@@ -22,23 +22,23 @@
   </VaModal>
 </template>
 <script lang="ts" setup>
-import { useToast } from 'vuestic-ui'
+import { useToast } from 'vuestic-ui';
 
-const { init } = useToast()
+const { init } = useToast();
 
 defineProps({
   yearlyPlan: {
     type: Boolean,
-    required: true,
-  },
-})
+    required: true
+  }
+});
 
-const emits = defineEmits(['cancel', 'confirm'])
+const emits = defineEmits(['cancel', 'confirm']);
 
 const confirm = () => {
-  init({ message: "You've successfully changed your payment plan", color: 'success' })
-  emits('confirm')
-}
+  init({ message: "You've successfully changed your payment plan", color: 'success' });
+  emits('confirm');
+};
 </script>
 
 <style lang="scss">

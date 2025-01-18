@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { PropType, computed, inject } from 'vue'
-import { defineVaDataTableColumns } from 'vuestic-ui'
-import { Project } from '../types'
-import UserAvatar from '../../users/widgets/UserAvatar.vue'
-import ProjectStatusBadge from '../components/ProjectStatusBadge.vue'
-import { Pagination, Sorting } from '../../../data/pages/projects'
-import { useVModel } from '@vueuse/core'
+import { PropType, computed, inject } from 'vue';
+import { defineVaDataTableColumns } from 'vuestic-ui';
+import { Project } from '../types';
+import UserAvatar from '../../users/widgets/UserAvatar.vue';
+import ProjectStatusBadge from '../components/ProjectStatusBadge.vue';
+import { Pagination, Sorting } from '../../../data/pages/projects';
+import { useVModel } from '@vueuse/core';
 
 const columns = defineVaDataTableColumns([
   { label: 'Project name', key: 'project_name', sortable: true },
@@ -13,42 +13,42 @@ const columns = defineVaDataTableColumns([
   { label: 'Team', key: 'team', sortable: true },
   { label: 'Status', key: 'status', sortable: true },
   { label: 'Creation Date', key: 'created_at', sortable: true },
-  { label: ' ', key: 'actions' },
-])
+  { label: ' ', key: 'actions' }
+]);
 
 const props = defineProps({
   projects: {
     type: Array as PropType<Project[]>,
-    required: true,
+    required: true
   },
   loading: {
     type: Boolean,
-    required: true,
+    required: true
   },
   sortBy: {
     type: String as PropType<Sorting['sortBy']>,
-    default: undefined,
+    default: undefined
   },
   sortingOrder: {
     type: String as PropType<Sorting['sortingOrder']>,
-    default: undefined,
+    default: undefined
   },
   pagination: {
     type: Object as PropType<Pagination>,
-    required: true,
-  },
-})
+    required: true
+  }
+});
 
 const emit = defineEmits<{
-  (event: 'edit', project: Project): void
-  (event: 'delete', project: Project): void
-}>()
+  (event: 'edit', project: Project): void;
+  (event: 'delete', project: Project): void;
+}>();
 
-const sortByVModel = useVModel(props, 'sortBy', emit)
-const sortingOrderVModel = useVModel(props, 'sortingOrder', emit)
+const sortByVModel = useVModel(props, 'sortBy', emit);
+const sortingOrderVModel = useVModel(props, 'sortingOrder', emit);
 
-const totalPages = computed(() => Math.ceil(props.pagination.total / props.pagination.perPage))
-const { getUserById, getTeamOptions } = inject<any>('ProjectsPage')
+const totalPages = computed(() => Math.ceil(props.pagination.total / props.pagination.perPage));
+const { getUserById, getTeamOptions } = inject<any>('ProjectsPage');
 </script>
 
 <template>

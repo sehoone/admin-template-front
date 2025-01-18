@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { defineVaDataTableColumns } from 'vuestic-ui'
-import UserAvatar from '../../../users/widgets/UserAvatar.vue'
-import ProjectStatusBadge from '../../../projects/components/ProjectStatusBadge.vue'
-import { useProjects } from '../../../projects/composables/useProjects'
-import { Pagination } from '../../../../data/pages/projects'
-import { ref } from 'vue'
-import { useProjectUsers } from '../../../projects/composables/useProjectUsers'
+import { defineVaDataTableColumns } from 'vuestic-ui';
+import UserAvatar from '../../../users/widgets/UserAvatar.vue';
+import ProjectStatusBadge from '../../../projects/components/ProjectStatusBadge.vue';
+import { useProjects } from '../../../projects/composables/useProjects';
+import { Pagination } from '../../../../data/pages/projects';
+import { ref } from 'vue';
+import { useProjectUsers } from '../../../projects/composables/useProjectUsers';
 
 const columns = defineVaDataTableColumns([
   { label: 'Name', key: 'project_name', sortable: true },
   { label: 'Status', key: 'status', sortable: true },
-  { label: 'Team', key: 'team', sortable: true },
-])
+  { label: 'Team', key: 'team', sortable: true }
+]);
 
-const pagination = ref<Pagination>({ page: 1, perPage: 5, total: 0 })
+const pagination = ref<Pagination>({ page: 1, perPage: 5, total: 0 });
 const { projects, isLoading, sorting } = useProjects({
-  pagination,
-})
+  pagination
+});
 
-const { getTeamOptions, getUserById } = useProjectUsers()
+const { getTeamOptions, getUserById } = useProjectUsers();
 </script>
 
 <template>

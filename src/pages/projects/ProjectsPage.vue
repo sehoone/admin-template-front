@@ -1,59 +1,59 @@
 <script setup lang="ts">
-import { ref, provide } from 'vue'
-import { useLocalStorage } from '@vueuse/core'
-import { useProjects } from './composables/useProjects'
-import ProjectCards from './widgets/ProjectCards.vue'
-import ProjectTable from './widgets/ProjectsTable.vue'
-import EditProjectForm from './widgets/EditProjectForm.vue'
-import { Project } from './types'
-import { useModal, useToast } from 'vuestic-ui'
-import { useProjectUsers } from './composables/useProjectUsers'
+import { ref, provide } from 'vue';
+import { useLocalStorage } from '@vueuse/core';
+import { useProjects } from './composables/useProjects';
+import ProjectCards from './widgets/ProjectCards.vue';
+import ProjectTable from './widgets/ProjectsTable.vue';
+import EditProjectForm from './widgets/EditProjectForm.vue';
+import { Project } from './types';
+import { useModal, useToast } from 'vuestic-ui';
+import { useProjectUsers } from './composables/useProjectUsers';
 
-const doShowAsCards = useLocalStorage('projects-view', true)
+const doShowAsCards = useLocalStorage('projects-view', true);
 
-const { projects, update, add, isLoading, remove, pagination, sorting } = useProjects()
+const { projects, update, add, isLoading, remove, pagination, sorting } = useProjects();
 
-const { users, getTeamOptions, getUserById } = useProjectUsers()
+const { users, getTeamOptions, getUserById } = useProjectUsers();
 
 provide('ProjectsPage', {
   users,
   getTeamOptions,
-  getUserById,
-})
+  getUserById
+});
 
-const projectToEdit = ref<Project | null>(null)
-const doShowProjectFormModal = ref(false)
+const projectToEdit = ref<Project | null>(null);
+const doShowProjectFormModal = ref(false);
 
 const editProject = (project: Project) => {
-  projectToEdit.value = project
-  doShowProjectFormModal.value = true
-}
+  projectToEdit.value = project;
+  doShowProjectFormModal.value = true;
+};
 
 const createNewProject = () => {
-  projectToEdit.value = null
-  doShowProjectFormModal.value = true
-}
+  projectToEdit.value = null;
+  doShowProjectFormModal.value = true;
+};
 
-const { init: notify } = useToast()
+const { init: notify } = useToast();
 
 const onProjectSaved = async (project: Project) => {
-  doShowProjectFormModal.value = false
+  doShowProjectFormModal.value = false;
   if ('id' in project) {
-    await update(project as Project)
+    await update(project as Project);
     notify({
       message: 'Project updated',
-      color: 'success',
-    })
+      color: 'success'
+    });
   } else {
-    await add(project as Project)
+    await add(project as Project);
     notify({
       message: 'Project created',
-      color: 'success',
-    })
+      color: 'success'
+    });
   }
-}
+};
 
-const { confirm } = useModal()
+const { confirm } = useModal();
 
 const onProjectDeleted = async (project: Project) => {
   const response = await confirm({
@@ -61,36 +61,36 @@ const onProjectDeleted = async (project: Project) => {
     message: `Are you sure you want to delete project "${project.project_name}"?`,
     okText: 'Delete',
     size: 'small',
-    maxWidth: '380px',
-  })
+    maxWidth: '380px'
+  });
 
   if (!response) {
-    return
+    return;
   }
 
-  await remove(project)
+  await remove(project);
   notify({
     message: 'Project deleted',
-    color: 'success',
-  })
-}
+    color: 'success'
+  });
+};
 
-const editFormRef = ref()
+const editFormRef = ref();
 
 const beforeEditFormModalClose = async (hide: () => unknown) => {
   if (editFormRef.value.isFormHasUnsavedChanges) {
     const agreed = await confirm({
       maxWidth: '380px',
       message: 'Form has unsaved changes. Are you sure you want to close it?',
-      size: 'small',
-    })
+      size: 'small'
+    });
     if (agreed) {
-      hide()
+      hide();
     }
   } else {
-    hide()
+    hide();
   }
-}
+};
 </script>
 
 <template>
@@ -106,7 +106,7 @@ const beforeEditFormModalClose = async (hide: () => unknown) => {
             border-color="background-element"
             :options="[
               { label: 'Cards', value: true },
-              { label: 'Table', value: false },
+              { label: 'Table', value: false }
             ]"
           />
         </div>
@@ -151,8 +151,8 @@ const beforeEditFormModalClose = async (hide: () => unknown) => {
         @close="cancel"
         @save="
           (project) => {
-            onProjectSaved(project)
-            ok()
+            onProjectSaved(project);
+            ok();
           }
         "
       />

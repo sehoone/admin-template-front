@@ -36,15 +36,15 @@
 </template>
 
 <script setup lang="ts">
-import { VaCard } from 'vuestic-ui'
-import VaChart from '../../../../components/va-charts/VaChart.vue'
-import { useChartData } from '../../../../data/charts/composables/useChartData'
-import { doughnutChartData, profitBackground, earningsBackground } from '../../../../data/charts/doughnutChartData'
-import { doughnutConfig } from '../../../../components/va-charts/vaChartConfigs'
-import { ChartOptions } from 'chart.js'
-import { externalTooltipHandler } from '../../../../components/va-charts/external-tooltip'
+import { VaCard } from 'vuestic-ui';
+import VaChart from '../../../../components/va-charts/VaChart.vue';
+import { useChartData } from '../../../../data/charts/composables/useChartData';
+import { doughnutChartData, profitBackground, earningsBackground } from '../../../../data/charts/doughnutChartData';
+import { doughnutConfig } from '../../../../components/va-charts/vaChartConfigs';
+import { ChartOptions } from 'chart.js';
+import { externalTooltipHandler } from '../../../../components/va-charts/external-tooltip';
 
-const chartData = useChartData(doughnutChartData)
+const chartData = useChartData(doughnutChartData);
 
 const options: ChartOptions<'doughnut'> = {
   ...doughnutConfig,
@@ -54,9 +54,9 @@ const options: ChartOptions<'doughnut'> = {
       // Chart to small to show tooltips
       enabled: false,
       position: 'nearest',
-      external: externalTooltipHandler,
-    },
+      external: externalTooltipHandler
+    }
   },
-  circumference: 360 * (chartData.value.datasets[0].data.reduce((acc: number, d: number) => acc + d, 0) / 800),
-}
+  circumference: 360 * (chartData.value.datasets[0].data.reduce((acc: number, d: number) => acc + d, 0) / 800)
+};
 </script>

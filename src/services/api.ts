@@ -1,4 +1,4 @@
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default {
   allUsers: () => `${apiBaseUrl}/users`,
@@ -9,5 +9,5 @@ export default {
   project: (id: string) => `${apiBaseUrl}/projects/${id}`,
   projects: ({ page, pageSize }: { page: number; pageSize: number }) =>
     `${apiBaseUrl}/projects/?page=${page}&pageSize=${pageSize}`,
-  avatars: () => `${apiBaseUrl}/avatars`,
-}
+  avatars: () => `${apiBaseUrl}/avatars`
+};

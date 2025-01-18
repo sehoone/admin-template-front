@@ -1,4 +1,4 @@
-import { TLineChartData } from '../types'
+import { TLineChartData } from '../types';
 
 export const pieChartData: TLineChartData = {
   labels: ['Africa', 'Asia', 'Europe'],
@@ -6,7 +6,7 @@ export const pieChartData: TLineChartData = {
     {
       label: 'Population (millions)',
       backgroundColor: ['primary', 'warning', 'danger'],
-      data: [2478, 5267, 734],
-    },
-  ],
-}
+      data: [2478, 5267, 734]
+    }
+  ]
+};

@@ -239,5 +239,5 @@ export default [
   'Yemen',
   'Yugoslavia',
   'Zambia',
-  'Zimbabwe',
-]
+  'Zimbabwe'
+];

@@ -14,5 +14,16 @@ module.exports = [
     name: 'postInfo',
     url: '/api/postInfo',
     method: 'get'
+  },
+  {
+    name: 'geo',
+    url: '/api/geo',
+    method: 'get'
+  }
+  ,
+  {
+    name: 'users',
+    url: '/api/users',
+    method: 'get'
   }
 ];

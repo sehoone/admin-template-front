@@ -13,10 +13,10 @@ module.exports = {
         tag: ['0.5625rem', '0.875rem'],
         regularSmall: ['0.8125rem', '1rem'],
         regularLarge: ['1.125rem', '1.625rem'],
-        regularMedium: ['0.875rem', '1.25rem'],
+        regularMedium: ['0.875rem', '1.25rem']
       },
       maxWidth: {
-        '7xl': '1128px',
+        '7xl': '1128px'
       },
       colors: {
         primary: 'var(--va-primary)',
@@ -34,23 +34,23 @@ module.exports = {
         textPrimary: 'var(--va-text-primary)',
         textInverted: 'var(--va-text-inverted)',
         shadow: 'var(--va-shadow)',
-        focus: 'var(--va-focus)',
+        focus: 'var(--va-focus)'
       },
       screens: {
         xs: '0px',
         sm: '640px',
         md: '1024px',
         lg: '1440px',
-        xl: '1920px',
-      },
+        xl: '1920px'
+      }
     },
     screens: {
       xs: '0px',
       sm: '576px',
       md: '768px',
       lg: '992px',
-      xl: '1200px',
-    },
+      xl: '1200px'
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};

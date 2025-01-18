@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defineVaDataTableColumns, useModal } from 'vuestic-ui'
-import { User, UserRole } from '../types'
-import UserAvatar from './UserAvatar.vue'
-import { PropType, computed, toRef } from 'vue'
-import { Pagination, Sorting } from '../../../data/pages/users'
-import { useVModel } from '@vueuse/core'
-import { Project } from '../../projects/types'
+import { defineVaDataTableColumns, useModal } from 'vuestic-ui';
+import { User, UserRole } from '../types';
+import UserAvatar from './UserAvatar.vue';
+import { PropType, computed, toRef } from 'vue';
+import { Pagination, Sorting } from '../../../data/pages/users';
+import { useVModel } from '@vueuse/core';
+import { Project } from '../../projects/types';
 
 const columns = defineVaDataTableColumns([
   { label: 'Full Name', key: 'fullname', sortable: true },
@@ -13,44 +13,44 @@ const columns = defineVaDataTableColumns([
   { label: 'Username', key: 'username', sortable: true },
   { label: 'Role', key: 'role', sortable: true },
   { label: 'Projects', key: 'projects', sortable: true },
-  { label: ' ', key: 'actions', align: 'right' },
-])
+  { label: ' ', key: 'actions', align: 'right' }
+]);
 
 const props = defineProps({
   users: {
     type: Array as PropType<User[]>,
-    required: true,
+    required: true
   },
   projects: {
     type: Array as PropType<Project[]>,
-    required: true,
+    required: true
   },
   loading: { type: Boolean, default: false },
   pagination: { type: Object as PropType<Pagination>, required: true },
   sortBy: { type: String as PropType<Sorting['sortBy']>, required: true },
-  sortingOrder: { type: String as PropType<Sorting['sortingOrder']>, default: null },
-})
+  sortingOrder: { type: String as PropType<Sorting['sortingOrder']>, default: null }
+});
 
 const emit = defineEmits<{
-  (event: 'edit-user', user: User): void
-  (event: 'delete-user', user: User): void
-  (event: 'update:sortBy', sortBy: Sorting['sortBy']): void
-  (event: 'update:sortingOrder', sortingOrder: Sorting['sortingOrder']): void
-}>()
+  (event: 'edit-user', user: User): void;
+  (event: 'delete-user', user: User): void;
+  (event: 'update:sortBy', sortBy: Sorting['sortBy']): void;
+  (event: 'update:sortingOrder', sortingOrder: Sorting['sortingOrder']): void;
+}>();
 
-const users = toRef(props, 'users')
-const sortByVModel = useVModel(props, 'sortBy', emit)
-const sortingOrderVModel = useVModel(props, 'sortingOrder', emit)
+const users = toRef(props, 'users');
+const sortByVModel = useVModel(props, 'sortBy', emit);
+const sortingOrderVModel = useVModel(props, 'sortingOrder', emit);
 
 const roleColors: Record<UserRole, string> = {
   admin: 'danger',
   user: 'background-element',
-  owner: 'warning',
-}
+  owner: 'warning'
+};
 
-const totalPages = computed(() => Math.ceil(props.pagination.total / props.pagination.perPage))
+const totalPages = computed(() => Math.ceil(props.pagination.total / props.pagination.perPage));
 
-const { confirm } = useModal()
+const { confirm } = useModal();
 
 const onUserDelete = async (user: User) => {
   const agreed = await confirm({
@@ -59,27 +59,27 @@ const onUserDelete = async (user: User) => {
     okText: 'Delete',
     cancelText: 'Cancel',
     size: 'small',
-    maxWidth: '380px',
-  })
+    maxWidth: '380px'
+  });
 
   if (agreed) {
-    emit('delete-user', user)
+    emit('delete-user', user);
   }
-}
+};
 
 const formatProjectNames = (projects: Project['id'][]) => {
   const names = projects.reduce((acc, p) => {
-    const project = props.projects?.find(({ id }) => p === id)
+    const project = props.projects?.find(({ id }) => p === id);
 
     if (project) {
-      acc.push(project.project_name)
+      acc.push(project.project_name);
     }
 
-    return acc
-  }, [] as string[])
-  if (names.length === 0) return 'No projects'
+    return acc;
+  }, [] as string[]);
+  if (names.length === 0) return 'No projects';
   if (names.length <= 2) {
-    return names.map((name) => name).join(', ')
+    return names.map((name) => name).join(', ');
   }
 
   return (
@@ -90,8 +90,8 @@ const formatProjectNames = (projects: Project['id'][]) => {
     ' + ' +
     (names.length - 2) +
     ' more'
-  )
-}
+  );
+};
 </script>
 
 <template>

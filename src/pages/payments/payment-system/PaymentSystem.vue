@@ -6,9 +6,9 @@
 </template>
 
 <script setup lang="ts">
-import { PaymentSystemType } from '../types'
+import { PaymentSystemType } from '../types';
 
 const props = defineProps<{
-  type: PaymentSystemType
-}>()
+  type: PaymentSystemType;
+}>();
 </script>

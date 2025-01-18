@@ -23,20 +23,20 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import PaymentSystem from '../../payment-system/PaymentSystem.vue'
-import { PaymentCard } from '../../types'
+import { computed } from 'vue';
+import PaymentSystem from '../../payment-system/PaymentSystem.vue';
+import { PaymentCard } from '../../types';
 
-const emits = defineEmits(['edit', 'remove'])
+const emits = defineEmits(['edit', 'remove']);
 
 const props = defineProps<{
-  card: PaymentCard
-}>()
+  card: PaymentCard;
+}>();
 
-const card = computed(() => props.card)
+const card = computed(() => props.card);
 
 const expirationDateString = computed(() => {
-  const e = props.card.expirationDate
-  return `${e[0]}${e[1]}/${e[2]}${e[3]}`
-})
+  const e = props.card.expirationDate;
+  return `${e[0]}${e[1]}/${e[2]}${e[3]}`;
+});
 </script>

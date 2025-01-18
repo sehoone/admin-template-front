@@ -50,56 +50,56 @@
   </VaSidebar>
 </template>
 <script lang="ts">
-import { defineComponent, watch, ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { defineComponent, watch, ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { useI18n } from 'vue-i18n'
-import { useColors } from 'vuestic-ui'
+import { useI18n } from 'vue-i18n';
+import { useColors } from 'vuestic-ui';
 
-import navigationRoutes, { type INavigationRoute } from './NavigationRoutes'
+import navigationRoutes, { type INavigationRoute } from './NavigationRoutes';
 
 export default defineComponent({
   name: 'Sidebar',
   props: {
     visible: { type: Boolean, default: true },
-    mobile: { type: Boolean, default: false },
+    mobile: { type: Boolean, default: false }
   },
   emits: ['update:visible'],
 
   setup: (props, { emit }) => {
-    const { getColor, colorToRgba } = useColors()
-    const route = useRoute()
-    const { t } = useI18n()
+    const { getColor, colorToRgba } = useColors();
+    const route = useRoute();
+    const { t } = useI18n();
 
-    const value = ref<boolean[]>([])
+    const value = ref<boolean[]>([]);
 
     const writableVisible = computed({
       get: () => props.visible,
-      set: (v: boolean) => emit('update:visible', v),
-    })
+      set: (v: boolean) => emit('update:visible', v)
+    });
 
-    const isActiveChildRoute = (child: INavigationRoute) => route.name === child.name
+    const isActiveChildRoute = (child: INavigationRoute) => route.name === child.name;
 
     const routeHasActiveChild = (section: INavigationRoute) => {
       if (!section.children) {
-        return route.path.endsWith(`${section.name}`)
+        return route.path.endsWith(`${section.name}`);
       }
 
-      return section.children.some(({ name }) => route.path.endsWith(`${name}`))
-    }
+      return section.children.some(({ name }) => route.path.endsWith(`${name}`));
+    };
 
     const setActiveExpand = () =>
-      (value.value = navigationRoutes.routes.map((route: INavigationRoute) => routeHasActiveChild(route)))
+      (value.value = navigationRoutes.routes.map((route: INavigationRoute) => routeHasActiveChild(route)));
 
-    const sidebarWidth = computed(() => (props.mobile ? '100vw' : '280px'))
-    const color = computed(() => getColor('background-secondary'))
-    const activeColor = computed(() => colorToRgba(getColor('focus'), 0.1))
+    const sidebarWidth = computed(() => (props.mobile ? '100vw' : '280px'));
+    const color = computed(() => getColor('background-secondary'));
+    const activeColor = computed(() => colorToRgba(getColor('focus'), 0.1));
 
-    const iconColor = (route: INavigationRoute) => (routeHasActiveChild(route) ? 'primary' : 'secondary')
-    const textColor = (route: INavigationRoute) => (routeHasActiveChild(route) ? 'primary' : 'textPrimary')
-    const arrowDirection = (state: boolean) => (state ? 'va-arrow-up' : 'va-arrow-down')
+    const iconColor = (route: INavigationRoute) => (routeHasActiveChild(route) ? 'primary' : 'secondary');
+    const textColor = (route: INavigationRoute) => (routeHasActiveChild(route) ? 'primary' : 'textPrimary');
+    const arrowDirection = (state: boolean) => (state ? 'va-arrow-up' : 'va-arrow-down');
 
-    watch(() => route.fullPath, setActiveExpand, { immediate: true })
+    watch(() => route.fullPath, setActiveExpand, { immediate: true });
 
     return {
       writableVisible,
@@ -113,8 +113,8 @@ export default defineComponent({
       t,
       iconColor,
       textColor,
-      arrowDirection,
-    }
-  },
-})
+      arrowDirection
+    };
+  }
+});
 </script>

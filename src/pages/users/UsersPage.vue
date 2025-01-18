@@ -1,93 +1,93 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import UsersTable from './widgets/UsersTable.vue'
-import EditUserForm from './widgets/EditUserForm.vue'
-import { User } from './types'
-import { useUsers } from './composables/useUsers'
-import { useModal, useToast } from 'vuestic-ui'
-import { useProjects } from '../projects/composables/useProjects'
+import { ref, watchEffect } from 'vue';
+import UsersTable from './widgets/UsersTable.vue';
+import EditUserForm from './widgets/EditUserForm.vue';
+import { User } from './types';
+import { useUsers } from './composables/useUsers';
+import { useModal, useToast } from 'vuestic-ui';
+import { useProjects } from '../projects/composables/useProjects';
 
-const doShowEditUserModal = ref(false)
+const doShowEditUserModal = ref(false);
 
-const { users, isLoading, filters, sorting, pagination, error, ...usersApi } = useUsers()
-const { projects } = useProjects()
+const { users, isLoading, filters, sorting, pagination, error, ...usersApi } = useUsers();
+const { projects } = useProjects();
 
-const userToEdit = ref<User | null>(null)
+const userToEdit = ref<User | null>(null);
 
 const showEditUserModal = (user: User) => {
-  userToEdit.value = user
-  doShowEditUserModal.value = true
-}
+  userToEdit.value = user;
+  doShowEditUserModal.value = true;
+};
 
 const showAddUserModal = () => {
-  userToEdit.value = null
-  doShowEditUserModal.value = true
-}
+  userToEdit.value = null;
+  doShowEditUserModal.value = true;
+};
 
-const { init: notify } = useToast()
+const { init: notify } = useToast();
 
 watchEffect(() => {
   if (error.value) {
     notify({
       message: error.value.message,
-      color: 'danger',
-    })
+      color: 'danger'
+    });
   }
-})
+});
 
 const onUserSaved = async (user: User) => {
   if (user.avatar.startsWith('blob:')) {
-    const blob = await fetch(user.avatar).then((r) => r.blob())
-    const { publicUrl } = await usersApi.uploadAvatar(blob)
-    user.avatar = publicUrl
+    const blob = await fetch(user.avatar).then((r) => r.blob());
+    const { publicUrl } = await usersApi.uploadAvatar(blob);
+    user.avatar = publicUrl;
   }
 
   if (userToEdit.value) {
-    await usersApi.update(user)
+    await usersApi.update(user);
     if (!error.value) {
       notify({
         message: `${user.fullname} has been updated`,
-        color: 'success',
-      })
+        color: 'success'
+      });
     }
   } else {
-    await usersApi.add(user)
+    await usersApi.add(user);
 
     if (!error.value) {
       notify({
         message: `${user.fullname} has been created`,
-        color: 'success',
-      })
+        color: 'success'
+      });
     }
   }
-}
+};
 
 const onUserDelete = async (user: User) => {
-  await usersApi.remove(user)
+  await usersApi.remove(user);
   notify({
     message: `${user.fullname} has been deleted`,
-    color: 'success',
-  })
-}
+    color: 'success'
+  });
+};
 
-const editFormRef = ref()
+const editFormRef = ref();
 
-const { confirm } = useModal()
+const { confirm } = useModal();
 
 const beforeEditFormModalClose = async (hide: () => unknown) => {
   if (editFormRef.value.isFormHasUnsavedChanges) {
     const agreed = await confirm({
       maxWidth: '380px',
       message: 'Form has unsaved changes. Are you sure you want to close it?',
-      size: 'small',
-    })
+      size: 'small'
+    });
     if (agreed) {
-      hide()
+      hide();
     }
   } else {
-    hide()
+    hide();
   }
-}
+};
 </script>
 
 <template>
@@ -103,7 +103,7 @@ const beforeEditFormModalClose = async (hide: () => unknown) => {
             border-color="background-element"
             :options="[
               { label: 'Active', value: true },
-              { label: 'Inactive', value: false },
+              { label: 'Inactive', value: false }
             ]"
           />
           <VaInput v-model="filters.search" placeholder="Search">
@@ -145,8 +145,8 @@ const beforeEditFormModalClose = async (hide: () => unknown) => {
       @close="cancel"
       @save="
         (user) => {
-          onUserSaved(user)
-          ok()
+          onUserSaved(user);
+          ok();
         }
       "
     />

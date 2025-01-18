@@ -8,11 +8,11 @@ export default {
       success: '#228200',
       info: '#158DE3',
       danger: '#E42222',
-      warning: '#FFD43A',
+      warning: '#FFD43A'
     },
     dark: {
       backgroundCardPrimary: '#111827',
-      backgroundCardSecondary: '#0f172a',
-    },
-  },
-}
+      backgroundCardSecondary: '#0f172a'
+    }
+  }
+};

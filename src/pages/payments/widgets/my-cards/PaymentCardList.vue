@@ -42,37 +42,37 @@
 </template>
 
 <script lang="ts" setup>
-import CardListItem from './PaymentCardListItem.vue'
-import { usePaymentCardsStore } from '../../../../stores/payment-cards'
-import { computed, ref } from 'vue'
-import { useColors } from 'vuestic-ui'
-import { PaymentCard } from '../../types'
-import { useModal, useToast } from 'vuestic-ui'
-import PaymentCardCreateModal from './PaymentCardCreateModal.vue'
-import PaymentCardUpdateModal from './PaymentCardUpdateModal.vue'
+import CardListItem from './PaymentCardListItem.vue';
+import { usePaymentCardsStore } from '../../../../stores/payment-cards';
+import { computed, ref } from 'vue';
+import { useColors } from 'vuestic-ui';
+import { PaymentCard } from '../../types';
+import { useModal, useToast } from 'vuestic-ui';
+import PaymentCardCreateModal from './PaymentCardCreateModal.vue';
+import PaymentCardUpdateModal from './PaymentCardUpdateModal.vue';
 
-const store = usePaymentCardsStore()
+const store = usePaymentCardsStore();
 
-const list = computed(() => store.allPaymentCards)
-const loading = computed(() => store.loading)
-const { confirm } = useModal()
+const list = computed(() => store.allPaymentCards);
+const loading = computed(() => store.loading);
+const { confirm } = useModal();
 
-const showCreate = ref<boolean>(false)
-const cardToEdit = ref<PaymentCard>()
-const { init } = useToast()
+const showCreate = ref<boolean>(false);
+const cardToEdit = ref<PaymentCard>();
+const { init } = useToast();
 
-store.load()
+store.load();
 const remove = async (card: PaymentCard) => {
   confirm({
     message: 'Are you really sure you want to delete this card?',
     size: 'small',
-    maxWidth: '380px',
+    maxWidth: '380px'
   }).then((ok) => {
-    if (!ok) return
-    store.remove(card.id)
-    init({ message: 'Payment card has been deleted', color: 'success' })
-  })
-}
+    if (!ok) return;
+    store.remove(card.id);
+    init({ message: 'Payment card has been deleted', color: 'success' });
+  });
+};
 
-const { getColor, colorToRgba } = useColors()
+const { getColor, colorToRgba } = useColors();
 </script>

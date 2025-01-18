@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, ChartOptions } from 'chart.js'
-import { ChoroplethController, ProjectionScale, ColorScale, GeoFeature } from 'chartjs-chart-geo'
-import { watchEffect } from 'vue'
-import { ChartData } from 'chart.js'
+import { ref } from 'vue';
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, ChartOptions } from 'chart.js';
+import { ChoroplethController, ProjectionScale, ColorScale, GeoFeature } from 'chartjs-chart-geo';
+import { watchEffect } from 'vue';
+import { ChartData } from 'chart.js';
 
 ChartJS.register(
   Title,
@@ -18,23 +18,23 @@ ChartJS.register(
   ChoroplethController,
   ProjectionScale,
   ColorScale,
-  GeoFeature,
-)
+  GeoFeature
+);
 
-const canvas = ref<HTMLCanvasElement | null>(null)
+const canvas = ref<HTMLCanvasElement | null>(null);
 
 function getColor(revenue: number) {
-  return revenue >= 0.9 ? '#63A6F8' : revenue > 0.4 ? '#8FC0FA' : '#EDF0F1'
+  return revenue >= 0.9 ? '#63A6F8' : revenue > 0.4 ? '#8FC0FA' : '#EDF0F1';
 }
 
 const props = defineProps<{
-  options?: ChartOptions<'choropleth'>
-  data: ChartData<'choropleth', { feature: any; value: number }[], string>
-}>()
+  options?: ChartOptions<'choropleth'>;
+  data: ChartData<'choropleth', { feature: any; value: number }[], string>;
+}>();
 
 watchEffect(() => {
   if (canvas.value === null) {
-    return
+    return;
   }
 
   new ChartJS(canvas.value.getContext('2d')!, {
@@ -43,24 +43,24 @@ watchEffect(() => {
     options: {
       plugins: {
         legend: {
-          display: false,
-        },
+          display: false
+        }
       },
       scales: {
         projection: {
           axis: 'x',
           projection: 'mercator',
-          projectionScale: 1.6,
+          projectionScale: 1.6
         },
         color: {
           axis: 'x',
           quantize: 5,
           display: false,
-          interpolate: getColor,
-        },
+          interpolate: getColor
+        }
       },
-      animation: false,
-    },
-  })
-})
+      animation: false
+    }
+  });
+});
 </script>

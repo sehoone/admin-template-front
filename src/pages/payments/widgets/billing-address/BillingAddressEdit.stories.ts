@@ -1,11 +1,11 @@
-import BillingAddressEdit from './BillingAddressEdit.vue'
-import { BillingAddress } from '../../types'
+import BillingAddressEdit from './BillingAddressEdit.vue';
+import { BillingAddress } from '../../types';
 
 export default {
   title: 'BillingAddressEdit',
   component: BillingAddressEdit,
-  tags: ['autodocs'],
-}
+  tags: ['autodocs']
+};
 
 export const Default = () => ({
   components: { BillingAddressEdit },
@@ -20,9 +20,9 @@ export const Default = () => ({
         city: 'Amesbury',
         state: 'HI',
         postalCode: '93373',
-        country: 'US',
-      } satisfies BillingAddress,
-    }
+        country: 'US'
+      } satisfies BillingAddress
+    };
   },
   template: `
     <BillingAddressEdit
@@ -32,8 +32,8 @@ export const Default = () => ({
         @cancel="lastEvent = 'cancel'"
     />
     <br>
-    <p>Last event: <span data-testid="lastEvent">{{ lastEvent }}</span></p>`,
-})
+    <p>Last event: <span data-testid="lastEvent">{{ lastEvent }}</span></p>`
+});
 
 export const Empty = () => ({
   components: { BillingAddressEdit },
@@ -47,13 +47,13 @@ export const Empty = () => ({
         city: '',
         state: '',
         postalCode: '',
-        country: '',
-      } satisfies BillingAddress,
-    }
+        country: ''
+      } satisfies BillingAddress
+    };
   },
   template: `
     <BillingAddressEdit
         :billingAddress="billingAddress"
         submitText="Create"
-    />`,
-})
+    />`
+});

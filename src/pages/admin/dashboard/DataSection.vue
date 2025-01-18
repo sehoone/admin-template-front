@@ -18,22 +18,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useColors } from 'vuestic-ui'
-import DataSectionItem from './DataSectionItem.vue'
+import { computed } from 'vue';
+import { useColors } from 'vuestic-ui';
+import DataSectionItem from './DataSectionItem.vue';
 
 interface DashboardMetric {
-  id: string
-  title: string
-  value: string
-  icon: string
-  changeText: string
-  changeDirection: 'up' | 'down'
-  iconBackground: string
-  iconColor: string
+  id: string;
+  title: string;
+  value: string;
+  icon: string;
+  changeText: string;
+  changeDirection: 'up' | 'down';
+  iconBackground: string;
+  iconColor: string;
 }
 
-const { getColor } = useColors()
+const { getColor } = useColors();
 
 const dashboardMetrics = computed<DashboardMetric[]>(() => [
   {
@@ -44,7 +44,7 @@ const dashboardMetrics = computed<DashboardMetric[]>(() => [
     changeText: '$1, 450',
     changeDirection: 'down',
     iconBackground: getColor('success'),
-    iconColor: getColor('on-success'),
+    iconColor: getColor('on-success')
   },
   {
     id: 'ongoingProjects',
@@ -54,7 +54,7 @@ const dashboardMetrics = computed<DashboardMetric[]>(() => [
     changeText: '25.36%',
     changeDirection: 'up',
     iconBackground: getColor('info'),
-    iconColor: getColor('on-info'),
+    iconColor: getColor('on-info')
   },
   {
     id: 'employees',
@@ -64,7 +64,7 @@ const dashboardMetrics = computed<DashboardMetric[]>(() => [
     changeText: '2.5%',
     changeDirection: 'up',
     iconBackground: getColor('danger'),
-    iconColor: getColor('on-danger'),
+    iconColor: getColor('on-danger')
   },
   {
     id: 'newProfit',
@@ -74,7 +74,7 @@ const dashboardMetrics = computed<DashboardMetric[]>(() => [
     changeText: '4%',
     changeDirection: 'up',
     iconBackground: getColor('warning'),
-    iconColor: getColor('on-warning'),
-  },
-])
+    iconColor: getColor('on-warning')
+  }
+]);
 </script>

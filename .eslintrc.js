@@ -4,14 +4,14 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    'vue/setup-compiler-macros': true,
+    'vue/setup-compiler-macros': true
   },
   plugins: ['@typescript-eslint'],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
-    ecmaVersion: 2021,
+    ecmaVersion: 2021
   },
   extends: [
     'eslint:recommended',
@@ -19,7 +19,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     '@vue/typescript/recommended',
     '@vue/prettier',
-    'plugin:storybook/recommended',
+    'plugin:storybook/recommended'
   ],
 
   rules: {
@@ -32,6 +32,6 @@ module.exports = {
     'vue/no-lone-template': 0,
     'vue/v-on-event-hyphenation': ['warn', 'never', { autofix: true }],
     'vue/component-name-in-template-casing': ['warn', 'PascalCase', { registeredComponentsOnly: false }],
-    'vue/script-indent': ['warn', 2], // , { baseIndent: 0 } - we should use that, but it didn't work for me for some reason.
-  },
-}
+    'vue/script-indent': ['warn', 2] // , { baseIndent: 0 } - we should use that, but it didn't work for me for some reason.
+  }
+};

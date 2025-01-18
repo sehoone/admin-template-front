@@ -1,4 +1,4 @@
-import { TBarChartData } from '../types'
+import { TBarChartData } from '../types';
 
 export const horizontalBarChartData: TBarChartData = {
   labels: [
@@ -13,18 +13,18 @@ export const horizontalBarChartData: TBarChartData = {
     'September',
     'October',
     'November',
-    'December',
+    'December'
   ],
   datasets: [
     {
       label: 'Vuestic Satisfaction Score',
       backgroundColor: 'primary',
-      data: [80, 90, 50, 70, 60, 90, 50, 90, 80, 40, 72, 93],
+      data: [80, 90, 50, 70, 60, 90, 50, 90, 80, 40, 72, 93]
     },
     {
       label: 'Bulma Satisfaction Score',
       backgroundColor: 'danger',
-      data: [20, 30, 20, 40, 50, 40, 15, 60, 30, 20, 42, 53],
-    },
-  ],
-}
+      data: [20, 30, 20, 40, 50, 40, 15, 60, 30, 20, 42, 53]
+    }
+  ]
+};

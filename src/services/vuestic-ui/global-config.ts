@@ -1,6 +1,6 @@
-import iconsConfig from './icons-config/icons-config'
-import colors from './themes'
-import { defineVuesticConfig } from 'vuestic-ui'
+import iconsConfig from './icons-config/icons-config';
+import colors from './themes';
+import { defineVuesticConfig } from 'vuestic-ui';
 
 export default defineVuesticConfig({
   colors,
@@ -13,8 +13,8 @@ export default defineVuesticConfig({
       sm: 320,
       md: 640,
       lg: 1024,
-      xl: 1440,
-    },
+      xl: 1440
+    }
   },
   components: {
     VaIcon: {
@@ -23,21 +23,21 @@ export default defineVuesticConfig({
         sizes: {
           small: 14,
           medium: 19,
-          large: 26,
-        },
-      },
+          large: 26
+        }
+      }
     },
     VaModal: {
       mobileFullscreen: false,
-      maxHeight: 'calc(100% - 2rem)',
+      maxHeight: 'calc(100% - 2rem)'
     },
     VaPagination: {
       activeButtonProps: {
-        preset: 'primary',
-      },
+        preset: 'primary'
+      }
     },
     VaDataTable: {
-      disableClientSideSorting: true,
+      disableClientSideSorting: true
     },
     presets: {
       VaSelect: {
@@ -47,9 +47,9 @@ export default defineVuesticConfig({
           placement: 'bottom-end',
           width: 'min(100%, 150px)',
           style:
-            '--va-input-wrapper-min-height: 24px; --va-input-wrapper-border-radius: 2px; --va-input-wrapper-width: 100px;',
-        },
-      },
-    },
-  },
-})
+            '--va-input-wrapper-min-height: 24px; --va-input-wrapper-border-radius: 2px; --va-input-wrapper-width: 100px;'
+        }
+      }
+    }
+  }
+});

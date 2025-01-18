@@ -12,7 +12,7 @@
         border-color="background-element"
         :options="[
           { label: 'Monthly', value: 'Monthly' },
-          { label: 'Annual', value: 'Annual' },
+          { label: 'Annual', value: 'Annual' }
         ]"
       />
     </div>
@@ -23,7 +23,7 @@
         :class="{
           'md:!py-10 !bg-backgroundCardSecondary': plan.model === 'Advanced',
           '!bg-backgroundCardPrimary': plan.model !== 'Advanced',
-          'ring-2 ring-primary ring-offset-2': plan.model === selectedPlan,
+          'ring-2 ring-primary ring-offset-2': plan.model === selectedPlan
         }"
         class="flex w-[326px] md:w-[349px] h-fit p-6 rounded-[13px]"
       >
@@ -72,18 +72,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useToast, useModal } from 'vuestic-ui'
+import { ref } from 'vue';
+import { useToast, useModal } from 'vuestic-ui';
 
-import { badgeStyles, selectButtonStyles } from './styles'
+import { badgeStyles, selectButtonStyles } from './styles';
 
-import { pricingPlans } from './options'
+import { pricingPlans } from './options';
 
-const { init } = useToast()
-const { init: initModal } = useModal()
+const { init } = useToast();
+const { init: initModal } = useModal();
 
-const selectedDuration = ref<string>('Annual')
-const selectedPlan = ref<string>()
+const selectedDuration = ref<string>('Annual');
+const selectedPlan = ref<string>();
 
 const createModal = (planModel: string) => {
   initModal({
@@ -91,12 +91,12 @@ const createModal = (planModel: string) => {
     mobileFullscreen: false,
     maxWidth: '380px',
     size: 'small',
-    onOk: () => selectPlan(planModel),
-  })
-}
+    onOk: () => selectPlan(planModel)
+  });
+};
 
 const selectPlan = (planModel: string) => {
-  init({ message: 'You successfully changed payment plan!', color: 'success' })
-  selectedPlan.value = planModel
-}
+  init({ message: 'You successfully changed payment plan!', color: 'success' });
+  selectedPlan.value = planModel;
+};
 </script>

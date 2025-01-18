@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { PropType, computed, ref, watch } from 'vue'
-import { useForm } from 'vuestic-ui'
-import { User, UserRole } from '../types'
-import UserAvatar from './UserAvatar.vue'
-import { useProjects } from '../../projects/composables/useProjects'
-import { validators } from '../../../services/utils'
+import { PropType, computed, ref, watch } from 'vue';
+import { useForm } from 'vuestic-ui';
+import { User, UserRole } from '../types';
+import UserAvatar from './UserAvatar.vue';
+import { useProjects } from '../../projects/composables/useProjects';
+import { validators } from '../../../services/utils';
 
 const props = defineProps({
   user: {
     type: Object as PropType<User | null>,
-    default: null,
+    default: null
   },
   saveButtonLabel: {
     type: String,
-    default: 'Save',
-  },
-})
+    default: 'Save'
+  }
+});
 
 const defaultNewUser: Omit<User, 'id'> = {
   avatar: '',
@@ -25,70 +25,70 @@ const defaultNewUser: Omit<User, 'id'> = {
   notes: '',
   email: '',
   active: true,
-  projects: [],
-}
+  projects: []
+};
 
-const newUser = ref<User>({ ...defaultNewUser } as User)
+const newUser = ref<User>({ ...defaultNewUser } as User);
 
 const isFormHasUnsavedChanges = computed(() => {
   return Object.keys(newUser.value).some((key) => {
     if (key === 'avatar' || key === 'projects') {
-      return false
+      return false;
     }
 
     return (
       newUser.value[key as keyof Omit<User, 'id'>] !== (props.user ?? defaultNewUser)?.[key as keyof Omit<User, 'id'>]
-    )
-  })
-})
+    );
+  });
+});
 
 defineExpose({
-  isFormHasUnsavedChanges,
-})
+  isFormHasUnsavedChanges
+});
 
-const { projects } = useProjects({ pagination: ref({ page: 1, perPage: 9999, total: 10 }) })
+const { projects } = useProjects({ pagination: ref({ page: 1, perPage: 9999, total: 10 }) });
 
 watch(
   [() => props.user, projects],
   () => {
     if (!props.user) {
-      return
+      return;
     }
 
     newUser.value = {
       ...props.user,
       projects: props.user.projects.filter((projectId) => projects.value.find(({ id }) => id === projectId)),
-      avatar: props.user.avatar || '',
-    }
+      avatar: props.user.avatar || ''
+    };
   },
-  { immediate: true },
-)
+  { immediate: true }
+);
 
-const avatar = ref<File>()
+const avatar = ref<File>();
 
 const makeAvatarBlobUrl = (avatar: File) => {
-  return URL.createObjectURL(avatar)
-}
+  return URL.createObjectURL(avatar);
+};
 
 watch(avatar, (newAvatar) => {
-  newUser.value.avatar = newAvatar ? makeAvatarBlobUrl(newAvatar) : ''
-})
+  newUser.value.avatar = newAvatar ? makeAvatarBlobUrl(newAvatar) : '';
+});
 
-const form = useForm('add-user-form')
+const form = useForm('add-user-form');
 
-const emit = defineEmits(['close', 'save'])
+const emit = defineEmits(['close', 'save']);
 
 const onSave = () => {
   if (form.validate()) {
-    emit('save', newUser.value)
+    emit('save', newUser.value);
   }
-}
+};
 
 const roleSelectOptions: { text: Capitalize<Lowercase<UserRole>>; value: UserRole }[] = [
   { text: 'Admin', value: 'admin' },
   { text: 'User', value: 'user' },
-  { text: 'Owner', value: 'owner' },
-]
+  { text: 'Owner', value: 'owner' }
+];
 </script>
 
 <template>
