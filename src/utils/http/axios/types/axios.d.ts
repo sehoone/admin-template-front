@@ -27,7 +27,7 @@ export interface RequestOptions {
 
 // API response
 export interface Result<T = unknown> {
-  rstCd: string;
-  dta: T;
-  errMsg: string;
+  code: string;
+  data: T;
+  msg: string;
 }

@@ -1,5 +1,6 @@
 import api from '../../services/api';
 import { Project } from '../../pages/projects/types';
+import { getProjectsApi } from '@/services/template/templateApi';
 
 export type Pagination = {
   page: number;
@@ -13,8 +14,8 @@ export type Sorting = {
 };
 
 export const getProjects = async (options: Partial<Sorting> & Pagination) => {
-  const projects: Project[] = await fetch(api.allProjects()).then((r) => r.json());
-
+  // const projects: Project[] = await fetch(api.allProjects()).then((r) => r.json());
+  const projects: Project[] = await getProjectsApi(options);
   return {
     data: projects,
     pagination: {

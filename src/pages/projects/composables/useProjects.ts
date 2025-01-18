@@ -1,7 +1,8 @@
-import { Ref, ref, unref, computed } from 'vue';
-import { Sorting, Pagination } from '../../../data/pages/projects';
-import { Project } from '../types';
+// import { useTemplateStore } from '@/services/template/templateModule';
+import { computed, Ref, ref, unref } from 'vue';
+import { Pagination, Sorting } from '../../../data/pages/projects';
 import { useProjectsStore } from '../../../stores/projects';
+import { Project } from '../types';
 import { useProjectUsers } from './useProjectUsers';
 
 const makePaginationRef = () => ref<Pagination>({ page: 1, perPage: 10, total: 0 });
@@ -10,6 +11,7 @@ const makeSortingRef = () => ref<Sorting>({ sortBy: 'created_at', sortingOrder: 
 export const useProjects = (options?: { sorting?: Ref<Sorting>; pagination?: Ref<Pagination> }) => {
   const isLoading = ref(false);
   const projectsStore = useProjectsStore();
+  // const templateStore = useTemplateStore();
   const { getUserById } = useProjectUsers();
 
   const { sorting = makeSortingRef(), pagination = makePaginationRef() } = options ?? {};
@@ -21,6 +23,7 @@ export const useProjects = (options?: { sorting?: Ref<Sorting>; pagination?: Ref
       pagination: unref(pagination)
     });
     pagination.value = projectsStore.pagination;
+    // templateStore.reqProjects();
 
     isLoading.value = false;
   };

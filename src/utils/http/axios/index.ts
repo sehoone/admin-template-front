@@ -18,9 +18,9 @@ const transform: AxiosTransform = {
    * @description: transformResponseHook
    */
   transformResponseHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
-    logger.debug('transformResponseHook start');
+    // logger.debug('transformResponseHook start');
     const { isReturnNativeResponse } = options;
-    logger.debug('transformResponseHook ' + res);
+    // logger.debug('transformResponseHook ' + res);
     // 서버응답 그대로 처리(axios 응답을 포함한 응답)
     if (isReturnNativeResponse) {
       return res;
@@ -29,12 +29,12 @@ const transform: AxiosTransform = {
       // logger.debug(t('system.api.networkException'));
       // throw new Error(t('system.api.networkException'));
     }
-    const data = res.data;
-    const { rstCd, dta } = data;
-    const hasSuccess = data && rstCd === ResultEnum.SUCCESS;
+    const bodyData = res.data;
+    const { code, data } = bodyData;
+    const hasSuccess = data && code === ResultEnum.SUCCESS;
 
     if (hasSuccess) {
-      return dta;
+      return data;
     }
 
     // const { createErrorModal } = useMessageModal();
@@ -52,8 +52,8 @@ const transform: AxiosTransform = {
     //   errMsg || t('system.api.networkException')
     // );
     // TODO 실패 코드 응답 처리
-    logger.debug('rstCd' + rstCd);
-    logger.debug('transformResponseHook end');
+    // logger.debug('msg' + msg);
+    // logger.debug('transformResponseHook end');
     return data;
   },
 
@@ -62,7 +62,7 @@ const transform: AxiosTransform = {
    * 요청보내기 전 처리.
    */
   beforeRequestHook: (config, options) => {
-    logger.debug('beforeRequestHook start');
+    // logger.debug('beforeRequestHook start');
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, urlPrefix } = options;
 
     if (joinPrefix) {
@@ -104,7 +104,7 @@ const transform: AxiosTransform = {
       }
     }
 
-    logger.debug('beforeRequestHook end');
+    // logger.debug('beforeRequestHook end');
     return config;
   },
 
@@ -112,7 +112,7 @@ const transform: AxiosTransform = {
    * @description: requestInterceptors
    */
   requestInterceptors: async (config) => {
-    logger.debug('requestInterceptors start');
+    // logger.debug('requestInterceptors start');
 
     // API인증정보 세팅
     // const authStore = useAuthStore();
@@ -127,7 +127,7 @@ const transform: AxiosTransform = {
     //     : authInfo.token;
     // }
 
-    logger.debug('requestInterceptors end');
+    // logger.debug('requestInterceptors end');
     return config;
   },
 
@@ -135,8 +135,8 @@ const transform: AxiosTransform = {
    * @description: responseInterceptors
    */
   responseInterceptors: (res: AxiosResponse<any>) => {
-    logger.debug('responseInterceptors start');
-    logger.debug('responseInterceptors end');
+    // logger.debug('responseInterceptors start');
+    // logger.debug('responseInterceptors end');
     return res;
   },
 
@@ -144,7 +144,7 @@ const transform: AxiosTransform = {
    * @description: responseInterceptorsCatch
    */
   responseInterceptorsCatch: (error: any) => {
-    logger.debug('responseInterceptorsCatch start' + error);
+    // logger.debug('responseInterceptorsCatch start' + error);
     // TODO 실패응답 처리. ex. http 실패응답. 401, 403, 404, 500 등
     // const { t } = useI18n();
     const { code, message } = error || {};

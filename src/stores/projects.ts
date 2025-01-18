@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import { addProject, getProjects, Pagination, removeProject, Sorting, updateProject } from '../data/pages/projects';
+import { addProject, Pagination, removeProject, Sorting, updateProject } from '../data/pages/projects';
 import { Project } from '../pages/projects/types';
+import { getProjectsApi } from '@/services/template/templateApi';
 
 export const useProjectsStore = defineStore('projects', {
   state: () => {
@@ -16,12 +17,20 @@ export const useProjectsStore = defineStore('projects', {
 
   actions: {
     async getAll(options: { pagination: Pagination; sorting?: Sorting }) {
-      const { data, pagination } = await getProjects({
+      // const { data, pagination } = await getProjects({
+      //   ...options.sorting,
+      //   ...options.pagination
+      // });
+      const data = await getProjectsApi({
         ...options.sorting,
         ...options.pagination
       });
       this.items = data;
-      this.pagination = pagination;
+      this.pagination = {
+        page: 1,
+        perPage: 10,
+        total: 0
+      };
     },
 
     async add(project: Omit<Project, 'id' | 'created_at'>) {

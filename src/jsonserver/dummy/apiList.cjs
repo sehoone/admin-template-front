@@ -19,11 +19,15 @@ module.exports = [
     name: 'geo',
     url: '/api/geo',
     method: 'get'
-  }
-  ,
+  },
   {
     name: 'users',
     url: '/api/users',
+    method: 'get'
+  },
+  {
+    name: 'projects',
+    url: '/api/projects',
     method: 'get'
   }
 ];
