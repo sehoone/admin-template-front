@@ -1,18 +1,18 @@
-# Ignore everything recursively...
-*
+dist
+dev-dist
+.local
+.output.js
+node_modules
+.nvmrc
+coverage
+CODEOWNERS
+.nitro
+.output
 
-# But not the .{ts,js,html,css,scss,vue,json,md} files
-!*.ts
-!*.js
-!*.html
-!*.css
-!*.scss
-!*.vue
-!*.json
-!*.md
 
-# But still ignore the dist folder
-dist/**
+**/*.svg
+**/*.sh
 
-# Check subdirectories too
-!*/
+public
+.npmrc
+*-lock.yaml

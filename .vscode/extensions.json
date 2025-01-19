@@ -1,3 +1,30 @@
 {
-  "recommendations": ["Vue.volar", "dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  "recommendations": [
+    // Language support for Vue 3
+    "Vue.volar",
+    // Integrates ESLint JavaScript into VS Code
+    "dbaeumer.vscode-eslint",
+    // Official Stylelint extension for Visual Studio Code
+    "stylelint.vscode-stylelint",
+    // Code formatter using Prettier
+    "esbenp.prettier-vscode",
+    // Syntax support for dotenv files
+    "mikestead.dotenv",
+    // Spell checker for source code
+    "streetsidesoftware.code-spell-checker",
+    // Official VS Code plugin for Tailwind CSS
+    "bradlc.vscode-tailwindcss",
+    // Iconify icon plugin
+    "antfu.iconify",
+    // i18n plugin
+    "Lokalise.i18n-ally",
+    // CSS variable hints
+    "vunguyentuan.vscode-css-variables",
+    // Show PNPM catalog versions in package.json
+    "antfu.pnpm-catalog-lens"
+  ],
+  "unwantedRecommendations": [
+    // Conflicts with volar
+    "octref.vetur"
+  ]
 }
