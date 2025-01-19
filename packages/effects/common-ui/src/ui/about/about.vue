@@ -21,9 +21,9 @@ defineOptions({
 
 withDefaults(defineProps<Props>(), {
   description:
-    '是一个现代化开箱即用的中后台解决方案，采用最新的技术栈，包括 Vue 3.0、Vite、TailwindCSS 和 TypeScript 等前沿技术，代码规范严谨，提供丰富的配置选项，旨在为中大型项目的开发提供现成的开箱即用解决方案及丰富的示例，同时，它也是学习和深入前端技术的一个极佳示例。',
+    'A modern out-of-the-box solution for mid-to-backend systems, using the latest technology stack including Vue 3.0, Vite, TailwindCSS, and TypeScript. The code is strictly standardized, providing rich configuration options. It aims to provide ready-to-use solutions and rich examples for the development of medium and large projects. At the same time, it is also an excellent example for learning and deepening front-end technology.',
   name: 'Vben Admin',
-  title: '关于项目',
+  title: 'About the Project',
 });
 
 declare global {
@@ -59,36 +59,36 @@ const {
   homepage,
   license,
   version,
-  // vite inject-metadata 插件注入的全局变量
+  // vite inject-metadata plugin injected global variables
 } = __VBEN_ADMIN_METADATA__ || {};
 
 const vbenDescriptionItems: DescriptionItem[] = [
   {
     content: version,
-    title: '版本号',
+    title: 'Version',
   },
   {
     content: license,
-    title: '开源许可协议',
+    title: 'Open Source License',
   },
   {
     content: buildTime,
-    title: '最后构建时间',
+    title: 'Last Build Time',
   },
   {
-    content: renderLink(homepage, '点击查看'),
-    title: '主页',
+    content: renderLink(homepage, 'Click to View'),
+    title: 'Homepage',
   },
   {
-    content: renderLink(VBEN_DOC_URL, '点击查看'),
-    title: '文档地址',
+    content: renderLink(VBEN_DOC_URL, 'Click to View'),
+    title: 'Documentation',
   },
   {
-    content: renderLink(VBEN_PREVIEW_URL, '点击查看'),
-    title: '预览地址',
+    content: renderLink(VBEN_PREVIEW_URL, 'Click to View'),
+    title: 'Preview',
   },
   {
-    content: renderLink(VBEN_GITHUB_URL, '点击查看'),
+    content: renderLink(VBEN_GITHUB_URL, 'Click to View'),
     title: 'Github',
   },
   {
@@ -96,7 +96,7 @@ const vbenDescriptionItems: DescriptionItem[] = [
       renderLink(authorUrl, `${authorName}  `),
       renderLink(`mailto:${authorEmail}`, authorEmail),
     ]),
-    title: '作者',
+    title: 'Author',
   },
 ];
 
@@ -123,7 +123,7 @@ const devDependenciesItems = Object.keys(devDependencies).map((key) => ({
     </template>
     <div class="card-box p-5">
       <div>
-        <h5 class="text-foreground text-lg">基本信息</h5>
+        <h5 class="text-foreground text-lg">Basic Information</h5>
       </div>
       <div class="mt-4">
         <dl class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -143,7 +143,7 @@ const devDependenciesItems = Object.keys(devDependencies).map((key) => ({
 
     <div class="card-box mt-6 p-5">
       <div>
-        <h5 class="text-foreground text-lg">生产环境依赖</h5>
+        <h5 class="text-foreground text-lg">Production Dependencies</h5>
       </div>
       <div class="mt-4">
         <dl class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -162,7 +162,7 @@ const devDependenciesItems = Object.keys(devDependencies).map((key) => ({
     </div>
     <div class="card-box mt-6 p-5">
       <div>
-        <h5 class="text-foreground text-lg">开发环境依赖</h5>
+        <h5 class="text-foreground text-lg">Development Dependencies</h5>
       </div>
       <div class="mt-4">
         <dl class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

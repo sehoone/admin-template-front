@@ -21,17 +21,17 @@ export const authenticateResponseInterceptor = ({
   return {
     rejected: async (error) => {
       const { config, response } = error;
-      // 如果不是 401 错误，直接抛出异常
+      // If it's not a 401 error, throw the error directly
       if (response?.status !== 401) {
         throw error;
       }
-      // 判断是否启用了 refreshToken 功能
-      // 如果没有启用或者已经是重试请求了，直接跳转到重新登录
+      // Check if refreshToken functionality is enabled
+      // If not enabled or it's already a retry request, redirect to re-login
       if (!enableRefreshToken || config.__isRetryRequest) {
         await doReAuthenticate();
         throw error;
       }
-      // 如果正在刷新 token，则将请求加入队列，等待刷新完成
+      // If the token is being refreshed, add the request to the queue and wait for the refresh to complete
       if (client.isRefreshing) {
         return new Promise((resolve) => {
           client.refreshTokenQueue.push((newToken: string) => {
@@ -41,22 +41,22 @@ export const authenticateResponseInterceptor = ({
         });
       }
 
-      // 标记开始刷新 token
+      // Mark the start of token refresh
       client.isRefreshing = true;
-      // 标记当前请求为重试请求，避免无限循环
+      // Mark the current request as a retry request to avoid infinite loops
       config.__isRetryRequest = true;
 
       try {
         const newToken = await doRefreshToken();
 
-        // 处理队列中的请求
+        // Process requests in the queue
         client.refreshTokenQueue.forEach((callback) => callback(newToken));
-        // 清空队列
+        // Clear the queue
         client.refreshTokenQueue = [];
 
         return client.request(error.config.url, { ...error.config });
       } catch (refreshError) {
-        // 如果刷新 token 失败，处理错误（如强制登出或跳转登录页面）
+        // If token refresh fails, handle the error (e.g., force logout or redirect to login page)
         client.refreshTokenQueue.forEach((callback) => callback(''));
         client.refreshTokenQueue = [];
         console.error('Refresh token failed, please login again.');

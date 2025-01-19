@@ -35,7 +35,7 @@ import {
   // VxeTextarea,
 } from 'vxe-pc-ui';
 import enUS from 'vxe-pc-ui/lib/language/en-US';
-// 导入默认的语言
+// Import default language
 import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
 import {
   VxeColgroup,
@@ -47,13 +47,13 @@ import {
 
 import { extendsDefaultFormatter } from './extends';
 
-// 是否加载过
+// Whether it has been loaded
 let isInit = false;
 
 // eslint-disable-next-line import/no-mutable-exports
 export let useTableForm: typeof useVbenForm;
 
-// 部分组件，如果没注册，vxe-table 会报错，这里实际没用组件，只是为了不报错，同时可以减少打包体积
+// Some components, if not registered, vxe-table will report an error. Here, the component is not actually used, just to avoid errors and reduce the package size.
 const createVirtualComponent = (name = '') => {
   return defineComponent({
     name,

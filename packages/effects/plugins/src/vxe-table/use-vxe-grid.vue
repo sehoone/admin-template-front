@@ -119,7 +119,7 @@ const toolbarOptions = computed(() => {
     status: showSearchForm.value ? 'primary' : undefined,
     title: $t('common.search'),
   };
-  // 将搜索按钮合并到用户配置的toolbarConfig.tools中
+  // Merge the search button into the user-configured toolbarConfig.tools
   const toolbarConfig: VxeGridPropTypes.ToolbarConfig = {
     tools: (gridOptions.value?.toolbarConfig?.tools ??
       []) as VxeToolbarPropTypes.ToolConfig[],
@@ -134,8 +134,8 @@ const toolbarOptions = computed(() => {
     return { toolbarConfig };
   }
 
-  // 强制使用固定的toolbar配置，不允许用户自定义
-  // 减少配置的复杂度，以及后续维护的成本
+  // Force the use of fixed toolbar configuration, disallowing user customization
+  // Reduce configuration complexity and subsequent maintenance costs
   toolbarConfig.slots = {
     ...(slotActions || showTableTitle.value
       ? { buttons: TOOLBAR_ACTIONS }
@@ -160,7 +160,7 @@ const options = computed(() => {
   if (mergedOptions.proxyConfig) {
     const { ajax } = mergedOptions.proxyConfig;
     mergedOptions.proxyConfig.enabled = !!ajax;
-    // 不自动加载数据, 由组件控制
+    // Do not automatically load data, controlled by the component
     mergedOptions.proxyConfig.autoLoad = false;
   }
 
@@ -244,7 +244,7 @@ async function init() {
     toRaw(gridOptions.value),
     toRaw(globalGridConfig),
   );
-  // 内部主动加载数据，防止form的默认值影响
+  // Internally load data actively to prevent the default value of the form from affecting it
   const autoLoad = defaultGridOptions.proxyConfig?.autoLoad;
   const enableProxyConfig = options.value.proxyConfig?.enabled;
   if (enableProxyConfig && autoLoad) {
@@ -255,23 +255,23 @@ async function init() {
     // props.api.reload(formApi.form?.values ?? {});
   }
 
-  // form 由 vben-form代替，所以不适配formConfig，这里给出警告
+  // The form is replaced by vben-form, so formConfig is not adapted, and a warning is given here
   const formConfig = gridOptions.value?.formConfig;
-  // 处理某个页面加载多个Table时，第2个之后的Table初始化报出警告
-  // 因为第一次初始化之后会把defaultGridOptions和gridOptions合并后缓存进State
+  // Handle the warning when loading multiple Tables on a page, and the initialization of the second and subsequent Tables
+  // Because after the first initialization, the defaultGridOptions and gridOptions will be merged and cached into the State
   if (formConfig && formConfig.enabled) {
     console.warn(
       '[Vben Vxe Table]: The formConfig in the grid is not supported, please use the `formOptions` props',
     );
   }
   props.api?.setState?.({ gridOptions: defaultGridOptions });
-  // form 由 vben-form 代替，所以需要保证query相关事件可以拿到参数
+  // The form is replaced by vben-form, so it is necessary to ensure that query-related events can get parameters
   extendProxyOptions(props.api, defaultGridOptions, () =>
     formApi.getLatestSubmissionValues(),
   );
 }
 
-// formOptions支持响应式
+// formOptions support responsiveness
 watch(
   formOptions,
   () => {
@@ -323,7 +323,7 @@ onUnmounted(() => {
       v-bind="options"
       v-on="events"
     >
-      <!-- 左侧操作区域或者title -->
+      <!-- Left operation area or title -->
       <template v-if="showToolbar" #toolbar-actions="slotProps">
         <slot v-if="showTableTitle" name="table-title">
           <div class="mr-1 pl-1 text-[1rem]">
@@ -336,7 +336,7 @@ onUnmounted(() => {
         <slot name="toolbar-actions" v-bind="slotProps"> </slot>
       </template>
 
-      <!-- 继承默认的slot -->
+      <!-- Inherit default slot -->
       <template
         v-for="slotName in delegatedSlots"
         :key="slotName"
@@ -345,7 +345,7 @@ onUnmounted(() => {
         <slot :name="slotName" v-bind="slotProps"></slot>
       </template>
 
-      <!-- form表单 -->
+      <!-- form -->
       <template #form>
         <div
           v-if="formOptions"
@@ -389,7 +389,7 @@ onUnmounted(() => {
           <VbenLoading :spinning="true" />
         </slot>
       </template>
-      <!-- 统一控状态 -->
+      <!-- Unified empty state -->
       <template #empty>
         <slot name="empty">
           <EmptyIcon class="mx-auto" />

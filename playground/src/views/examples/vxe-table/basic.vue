@@ -70,25 +70,25 @@ function changeLoading() {
 
 <template>
   <Page
-    description="表格组件常用于快速开发数据展示与交互界面，示例数据为静态数据。该组件是对vxe-table进行简单的二次封装，大部分属性与方法与vxe-table保持一致。"
-    title="表格基础示例"
+    description="The table component is commonly used for quickly developing data display and interaction interfaces. The example data is static. This component is a simple secondary encapsulation of vxe-table, and most properties and methods are consistent with vxe-table."
+    title="Basic Table Example"
   >
     <template #extra>
       <DocButton path="/components/common-ui/vben-vxe-table" />
     </template>
-    <Grid table-title="基础列表" table-title-help="提示">
+    <Grid table-title="Basic List" table-title-help="Help">
       <!-- <template #toolbar-actions>
-        <Button class="mr-2" type="primary">左侧插槽</Button>
+        <Button class="mr-2" type="primary">Left Slot</Button>
       </template> -->
       <template #toolbar-tools>
         <Button class="mr-2" type="primary" @click="changeBorder">
-          {{ showBorder ? '隐藏' : '显示' }}边框
+          {{ showBorder ? 'Hide' : 'Show' }} Border
         </Button>
         <Button class="mr-2" type="primary" @click="changeLoading">
-          显示loading
+          Show Loading
         </Button>
         <Button type="primary" @click="changeStripe">
-          {{ showStripe ? '隐藏' : '显示' }}斑马纹
+          {{ showStripe ? 'Hide' : 'Show' }} Stripe
         </Button>
       </template>
     </Grid>

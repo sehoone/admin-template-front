@@ -1,18 +1,11 @@
 <script lang="ts" setup>
-import type { NotificationItem } from '@vben/layouts';
-
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 
 import { AuthenticationLoginExpiredModal } from '@vben/common-ui';
 import { VBEN_DOC_URL, VBEN_GITHUB_URL } from '@vben/constants';
 import { useWatermark } from '@vben/hooks';
 import { BookOpenText, CircleHelp, MdiGithub } from '@vben/icons';
-import {
-  BasicLayout,
-  LockScreen,
-  Notification,
-  UserDropdown,
-} from '@vben/layouts';
+import { BasicLayout, LockScreen, UserDropdown } from '@vben/layouts';
 import { preferences } from '@vben/preferences';
 import { useAccessStore, useUserStore } from '@vben/stores';
 import { openWindow } from '@vben/utils';
@@ -21,48 +14,48 @@ import { $t } from '#/locales';
 import { useAuthStore } from '#/store';
 import LoginForm from '#/views/_core/authentication/login.vue';
 
-const notifications = ref<NotificationItem[]>([
-  {
-    avatar: 'https://avatar.vercel.sh/vercel.svg?text=VB',
-    date: '3 hours ago',
-    isRead: true,
-    message:
-      'Description information description information description information',
-    title: '14 new weekly reports received',
-  },
-  {
-    avatar: 'https://avatar.vercel.sh/1',
-    date: 'just',
-    isRead: false,
-    message:
-      'Description information description information description information',
-    title: 'Zhu Qianyou replied to you',
-  },
-  {
-    avatar: 'https://avatar.vercel.sh/1',
-    date: '2024-01-01',
-    isRead: false,
-    message:
-      'Description information description information description information',
-    title: 'Qu Lili commented on you',
-  },
-  {
-    avatar: 'https://avatar.vercel.sh/satori',
-    date: '1 day ago',
-    isRead: false,
-    message:
-      'Description information description information description information',
-    title: 'Reminder',
-  },
-]);
+// const notifications = ref<NotificationItem[]>([
+//   {
+//     avatar: 'https://avatar.vercel.sh/vercel.svg?text=VB',
+//     date: '3 hours ago',
+//     isRead: true,
+//     message:
+//       'Description information description information description information',
+//     title: '14 new weekly reports received',
+//   },
+//   {
+//     avatar: 'https://avatar.vercel.sh/1',
+//     date: 'just',
+//     isRead: false,
+//     message:
+//       'Description information description information description information',
+//     title: 'Zhu Qianyou replied to you',
+//   },
+//   {
+//     avatar: 'https://avatar.vercel.sh/1',
+//     date: '2024-01-01',
+//     isRead: false,
+//     message:
+//       'Description information description information description information',
+//     title: 'Qu Lili commented on you',
+//   },
+//   {
+//     avatar: 'https://avatar.vercel.sh/satori',
+//     date: '1 day ago',
+//     isRead: false,
+//     message:
+//       'Description information description information description information',
+//     title: 'Reminder',
+//   },
+// ]);
 
 const userStore = useUserStore();
 const authStore = useAuthStore();
 const accessStore = useAccessStore();
 const { destroyWatermark, updateWatermark } = useWatermark();
-const showDot = computed(() =>
-  notifications.value.some((item) => !item.isRead),
-);
+// const showDot = computed(() =>
+//   notifications.value.some((item) => !item.isRead),
+// );
 
 const menus = computed(() => [
   {
@@ -102,13 +95,13 @@ async function handleLogout() {
   await authStore.logout(false);
 }
 
-function handleNoticeClear() {
-  notifications.value = [];
-}
+// function handleNoticeClear() {
+//   notifications.value = [];
+// }
 
-function handleMakeAll() {
-  notifications.value.forEach((item) => (item.isRead = true));
-}
+// function handleMakeAll() {
+//   notifications.value.forEach((item) => (item.isRead = true));
+// }
 watch(
   () => preferences.app.watermark,
   async (enable) => {
@@ -138,6 +131,7 @@ watch(
         @logout="handleLogout"
       />
     </template>
+    <!--
     <template #notification>
       <Notification
         :dot="showDot"
@@ -145,7 +139,7 @@ watch(
         @clear="handleNoticeClear"
         @make-all="handleMakeAll"
       />
-    </template>
+    </template>-->
     <template #extra>
       <AuthenticationLoginExpiredModal
         v-model:open="accessStore.loginExpired"

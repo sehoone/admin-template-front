@@ -10,5 +10,9 @@
     "title": "Dashboard",
     "analytics": "Analytics",
     "workspace": "workspace"
+  },
+  "ai": {
+    "title": "AI",
+    "aiDataForm": "AiDataForm"
   }
 }

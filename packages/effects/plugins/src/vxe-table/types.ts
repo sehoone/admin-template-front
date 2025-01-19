@@ -22,26 +22,26 @@ export interface VxePaginationInfo {
 }
 
 interface ToolbarConfigOptions extends VxeGridPropTypes.ToolbarConfig {
-  /** 是否显示切换搜索表单的按钮 */
+  /** Whether to show the button to toggle the search form */
   search?: boolean;
 }
 
 export interface VxeTableGridOptions<T = any> extends VxeTableGridProps<T> {
-  /** 工具栏配置 */
+  /** Toolbar configuration */
   toolbarConfig?: ToolbarConfigOptions;
 }
 
 export interface VxeGridProps {
   /**
-   * 标题
+   * Title
    */
   tableTitle?: string;
   /**
-   * 标题帮助
+   * Title help
    */
   tableTitleHelp?: string;
   /**
-   * 组件class
+   * Component class
    */
   class?: ClassType;
   /**
@@ -49,19 +49,19 @@ export interface VxeGridProps {
    */
   gridClass?: ClassType;
   /**
-   * vxe-grid 配置
+   * vxe-grid configuration
    */
   gridOptions?: DeepPartial<VxeTableGridOptions>;
   /**
-   * vxe-grid 事件
+   * vxe-grid events
    */
   gridEvents?: DeepPartial<VxeGridListeners>;
   /**
-   * 表单配置
+   * Form configuration
    */
   formOptions?: VbenFormProps;
   /**
-   * 显示搜索表单
+   * Show search form
    */
   showSearchForm?: boolean;
 }

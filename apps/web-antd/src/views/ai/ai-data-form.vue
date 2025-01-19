@@ -8,7 +8,7 @@ import { message } from 'ant-design-vue';
 import dayjs from 'dayjs';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import { getExampleTableApi } from '#/api';
+import { getExampleTableApi } from '#/api/core/ai';
 
 interface RowType {
   category: string;

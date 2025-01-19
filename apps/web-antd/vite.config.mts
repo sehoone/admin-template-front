@@ -6,9 +6,16 @@ export default defineConfig(async () => {
     vite: {
       server: {
         proxy: {
-          '/api': {
+          // '/api': {
+          //   changeOrigin: true,
+          //   rewrite: (path) => path.replace(/^\/api/, ''),
+          //   // mock proxy target address
+          //   target: 'http://localhost:5320/api',
+          //   ws: true,
+          // },
+          '/dummy': {
             changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ''),
+            rewrite: (path) => path.replace(/^\/dummy/, ''),
             // mock proxy target address
             target: 'http://localhost:5320/api',
             ws: true,
